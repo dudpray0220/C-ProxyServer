@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/mnt/c/Users/byh/ProxyServer/inc/acceptor.hpp
+bridge.hpp
+/mnt/c/Users/byh/ProxyServer/inc/bridge.hpp
+
+/mnt/c/Users/byh/ProxyServer/inc/bridge.hpp
+common.hpp
+/mnt/c/Users/byh/ProxyServer/inc/common.hpp
+
 /mnt/c/Users/byh/ProxyServer/inc/common.hpp
 cstdlib
 -
@@ -26,11 +34,11 @@ boost/asio.hpp
 boost/thread/mutex.hpp
 -
 
-/mnt/c/Users/byh/ProxyServer/inc/tcpproxy_server.hpp
-common.hpp
-/mnt/c/Users/byh/ProxyServer/inc/common.hpp
-
 /mnt/c/Users/byh/ProxyServer/main.cpp
-./inc/tcpproxy_server.hpp
-/mnt/c/Users/byh/ProxyServer/inc/tcpproxy_server.hpp
+./inc/bridge.hpp
+/mnt/c/Users/byh/ProxyServer/inc/bridge.hpp
+./inc/acceptor.hpp
+/mnt/c/Users/byh/ProxyServer/inc/acceptor.hpp
+
+/mnt/c/Users/byh/ProxyServer/src/tcpproxy_server.cpp
 

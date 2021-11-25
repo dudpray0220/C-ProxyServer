@@ -1,1 +1,1 @@
-/usr/bin/c++   -pthread -g  -rdynamic CMakeFiles/ProxyServer.dir/main.cpp.o CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.o  -o ProxyServer 
+/usr/bin/c++   -pthread  -rdynamic CMakeFiles/ProxyServer.dir/main.cpp.o CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.o  -o ProxyServer 

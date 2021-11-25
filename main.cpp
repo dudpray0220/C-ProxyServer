@@ -1,4 +1,5 @@
-#include "./inc/tcpproxy_server.hpp"
+#include "./inc/bridge.hpp"
+#include "./inc/acceptor.hpp"
 
 // argc 는 argument의 수를 의미한다. argv 는 argument 가 char 형으로 저장이 되는 변수.
 // argv[0] 은 항상 실행 파일명(실행 경로)이 저장된다. argv[1], argv[2] … 에는 순서대로 사용자가 입력한 argument 가 저장된다.
@@ -20,9 +21,9 @@ int main(int argc, char *argv[])
 
    try
    {
-      yhbae::bridge::acceptor acceptor(ios,
-                                       local_host, local_port,
-                                       forward_host, forward_port); // acceptor 생성자를 이용하여 객체생성
+      acceptor acceptor(ios,
+                        local_host, local_port,
+                        forward_host, forward_port); // acceptor 생성자를 이용하여 객체생성
 
       acceptor.accept_connections(); // accept_connections 함수 호출
 
