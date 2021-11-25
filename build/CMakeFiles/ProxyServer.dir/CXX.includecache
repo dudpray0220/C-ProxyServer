@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/byh/ProxyServer/inc/common.hpp
+cstdlib
+-
+cstddef
+-
+iostream
+-
+string
+-
+boost/shared_ptr.hpp
+-
+boost/enable_shared_from_this.hpp
+-
+boost/bind.hpp
+-
+boost/asio.hpp
+-
+boost/thread/mutex.hpp
+-
+
+/mnt/c/Users/byh/ProxyServer/inc/tcpproxy_server.hpp
+common.hpp
+/mnt/c/Users/byh/ProxyServer/inc/common.hpp
+
+/mnt/c/Users/byh/ProxyServer/main.cpp
+./inc/tcpproxy_server.hpp
+/mnt/c/Users/byh/ProxyServer/inc/tcpproxy_server.hpp
+

@@ -8,136 +8,135 @@ namespace yhbae
    class bridge : public boost::enable_shared_from_this<bridge>
    {
    public:
+      typedef ip::tcp::socket socket_type;        // typedef는 타입의 별칭 생성. ip::tcp::socket의 별칭이 socket_type
+      typedef boost::shared_ptr<bridge> ptr_type; // ptr_type은 타입의 별칭. shared_ptr은 스마트 포인터
 
-      typedef ip::tcp::socket socket_type;
-      typedef boost::shared_ptr<bridge> ptr_type;
+      bridge(boost::asio::io_service &ios)
+          : downstream_socket_(ios),
+            upstream_socket_(ios)
+      {
+      }
 
-      bridge(boost::asio::io_service& ios)
-      : downstream_socket_(ios),
-        upstream_socket_  (ios)
-      {}
-
-      socket_type& downstream_socket()
+      socket_type &downstream_socket() // &를 붙이면 주소가 된다.
       {
          // Client socket
          return downstream_socket_;
       }
 
-      socket_type& upstream_socket()
+      socket_type &upstream_socket()
       {
          // Remote server socket
          return upstream_socket_;
       }
 
-      void start(const std::string& upstream_host, unsigned short upstream_port)
+      // start 함수
+      void start(const std::string &upstream_host, unsigned short upstream_port) // void는 return이 없음.
       {
          // Attempt connection to remote server (upstream side)
          upstream_socket_.async_connect(
-              ip::tcp::endpoint(
-                   boost::asio::ip::address::from_string(upstream_host),
-                   upstream_port),
-               boost::bind(&bridge::handle_upstream_connect,
-                    shared_from_this(),
-                    boost::asio::placeholders::error));
+             ip::tcp::endpoint(
+                 boost::asio::ip::address::from_string(upstream_host),
+                 upstream_port),
+             boost::bind(&bridge::handle_upstream_connect,
+                         shared_from_this(),
+                         boost::asio::placeholders::error));
       }
 
-      void handle_upstream_connect(const boost::system::error_code& error)
+      void handle_upstream_connect(const boost::system::error_code &error)
       {
          if (!error)
          {
             // Setup async read from remote server (upstream)
             upstream_socket_.async_read_some(
-                 boost::asio::buffer(upstream_data_,max_data_length),
-                 boost::bind(&bridge::handle_upstream_read,
-                      shared_from_this(),
-                      boost::asio::placeholders::error,
-                      boost::asio::placeholders::bytes_transferred));
+                boost::asio::buffer(upstream_data_, max_data_length),
+                boost::bind(&bridge::handle_upstream_read,
+                            shared_from_this(),
+                            boost::asio::placeholders::error,
+                            boost::asio::placeholders::bytes_transferred));
 
             // Setup async read from client (downstream)
             downstream_socket_.async_read_some(
-                 boost::asio::buffer(downstream_data_,max_data_length),
-                 boost::bind(&bridge::handle_downstream_read,
-                      shared_from_this(),
-                      boost::asio::placeholders::error,
-                      boost::asio::placeholders::bytes_transferred));
+                boost::asio::buffer(downstream_data_, max_data_length),
+                boost::bind(&bridge::handle_downstream_read,
+                            shared_from_this(),
+                            boost::asio::placeholders::error,
+                            boost::asio::placeholders::bytes_transferred));
          }
          else
             close();
       }
 
    private:
-
       /*
-         Section A: Remote Server --> Proxy --> Client
+         Section A: Remote Server --> Proxy --> Client (다운스트림)
          Process data recieved from remote sever then send to client.
       */
 
       // Read from remote server complete, now send data to client
-      void handle_upstream_read(const boost::system::error_code& error,
-                                const size_t& bytes_transferred)
+      void handle_upstream_read(const boost::system::error_code &error,
+                                const size_t &bytes_transferred)
       {
          if (!error)
          {
             async_write(downstream_socket_,
-                 boost::asio::buffer(upstream_data_,bytes_transferred),
-                 boost::bind(&bridge::handle_downstream_write,
-                      shared_from_this(),
-                      boost::asio::placeholders::error));
+                        boost::asio::buffer(upstream_data_, bytes_transferred),
+                        boost::bind(&bridge::handle_downstream_write,
+                                    shared_from_this(),
+                                    boost::asio::placeholders::error));
          }
          else
             close();
       }
 
       // Write to client complete, Async read from remote server
-      void handle_downstream_write(const boost::system::error_code& error)
+      void handle_downstream_write(const boost::system::error_code &error)
       {
          if (!error)
          {
             upstream_socket_.async_read_some(
-                 boost::asio::buffer(upstream_data_,max_data_length),
-                 boost::bind(&bridge::handle_upstream_read,
-                      shared_from_this(),
-                      boost::asio::placeholders::error,
-                      boost::asio::placeholders::bytes_transferred));
+                boost::asio::buffer(upstream_data_, max_data_length),
+                boost::bind(&bridge::handle_upstream_read,
+                            shared_from_this(),
+                            boost::asio::placeholders::error,
+                            boost::asio::placeholders::bytes_transferred));
          }
          else
             close();
       }
       // *** End Of Section A ***
 
-
       /*
-         Section B: Client --> Proxy --> Remove Server
+         Section B: Client --> Proxy --> Remove Server (업스트림)
          Process data recieved from client then write to remove server.
       */
 
       // Read from client complete, now send data to remote server
-      void handle_downstream_read(const boost::system::error_code& error,
-                                  const size_t& bytes_transferred)
+      void handle_downstream_read(const boost::system::error_code &error,
+                                  const size_t &bytes_transferred)
       {
          if (!error)
          {
             async_write(upstream_socket_,
-                  boost::asio::buffer(downstream_data_,bytes_transferred),
-                  boost::bind(&bridge::handle_upstream_write,
-                        shared_from_this(),
-                        boost::asio::placeholders::error));
+                        boost::asio::buffer(downstream_data_, bytes_transferred),
+                        boost::bind(&bridge::handle_upstream_write,
+                                    shared_from_this(),
+                                    boost::asio::placeholders::error));
          }
          else
             close();
       }
 
       // Write to remote server complete, Async read from client
-      void handle_upstream_write(const boost::system::error_code& error)
+      void handle_upstream_write(const boost::system::error_code &error)
       {
          if (!error)
          {
             downstream_socket_.async_read_some(
-                 boost::asio::buffer(downstream_data_,max_data_length),
-                 boost::bind(&bridge::handle_downstream_read,
-                      shared_from_this(),
-                      boost::asio::placeholders::error,
-                      boost::asio::placeholders::bytes_transferred));
+                boost::asio::buffer(downstream_data_, max_data_length),
+                boost::bind(&bridge::handle_downstream_read,
+                            shared_from_this(),
+                            boost::asio::placeholders::error,
+                            boost::asio::placeholders::bytes_transferred));
          }
          else
             close();
@@ -162,27 +161,29 @@ namespace yhbae
       socket_type downstream_socket_;
       socket_type upstream_socket_;
 
-      enum { max_data_length = 8192 }; //8KB
+      enum
+      {
+         max_data_length = 8192
+      }; //8KB
       unsigned char downstream_data_[max_data_length];
-      unsigned char upstream_data_  [max_data_length];
+      unsigned char upstream_data_[max_data_length];
 
       boost::mutex mutex_;
 
    public:
-
       class acceptor
       {
       public:
-
-         acceptor(boost::asio::io_service& io_service,
-                  const std::string& local_host, unsigned short local_port,
-                  const std::string& upstream_host, unsigned short upstream_port)
-         : io_service_(io_service),
-           localhost_address(boost::asio::ip::address_v4::from_string(local_host)),
-           acceptor_(io_service_,ip::tcp::endpoint(localhost_address,local_port)),
-           upstream_port_(upstream_port),
-           upstream_host_(upstream_host)
-         {}
+         acceptor(boost::asio::io_service &io_service,
+                  const std::string &local_host, unsigned short local_port,
+                  const std::string &upstream_host, unsigned short upstream_port)
+             : io_service_(io_service),
+               localhost_address(boost::asio::ip::address_v4::from_string(local_host)),
+               acceptor_(io_service_, ip::tcp::endpoint(localhost_address, local_port)),
+               upstream_port_(upstream_port),
+               upstream_host_(upstream_host)
+         {
+         }
 
          bool accept_connections()
          {
@@ -191,11 +192,11 @@ namespace yhbae
                session_ = boost::shared_ptr<bridge>(new bridge(io_service_));
 
                acceptor_.async_accept(session_->downstream_socket(),
-                    boost::bind(&acceptor::handle_accept,
-                         this,
-                         boost::asio::placeholders::error));
+                                      boost::bind(&acceptor::handle_accept,
+                                                  this,
+                                                  boost::asio::placeholders::error));
             }
-            catch(std::exception& e)
+            catch (std::exception &e)
             {
                std::cerr << "acceptor exception: " << e.what() << std::endl;
                return false;
@@ -205,12 +206,11 @@ namespace yhbae
          }
 
       private:
-
-         void handle_accept(const boost::system::error_code& error)
+         void handle_accept(const boost::system::error_code &error)
          {
             if (!error)
             {
-               session_->start(upstream_host_,upstream_port_);
+               session_->start(upstream_host_, upstream_port_);
 
                if (!accept_connections())
                {
@@ -223,13 +223,12 @@ namespace yhbae
             }
          }
 
-         boost::asio::io_service& io_service_;
+         boost::asio::io_service &io_service_;
          ip::address_v4 localhost_address;
          ip::tcp::acceptor acceptor_;
          ptr_type session_;
          unsigned short upstream_port_;
          std::string upstream_host_;
       };
-
    };
 }
