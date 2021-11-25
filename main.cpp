@@ -7,8 +7,8 @@ int main(int argc, char *argv[])
 {
    if (argc != 5) // argv[1] ~ argv[4] : local host ip ~ forward port까지 들어간다. argc에는 그 갯수인 5가 들어간다.
    {
-      std::cerr << "usage: tcpproxy_server <local host ip> <local port> <forward host ip> <forward port>" << std::endl;
-      return 1; // 정상종료 but 무엇인가 있음.
+      std::cerr << "usage: tcpproxy_server <local host ip> <local port> <forward host ip> <forward port>" << std::endl; // 즉 argc가 5가 아니면 출력.
+      return 1;                                                                                                         // return 1 : 정상종료 but 무엇인가 있음.
    }
 
    const unsigned short local_port = static_cast<unsigned short>(::atoi(argv[2])); // static_cast<바꾸려고 하는 타입>(대상);
@@ -22,9 +22,9 @@ int main(int argc, char *argv[])
    {
       yhbae::bridge::acceptor acceptor(ios,
                                        local_host, local_port,
-                                       forward_host, forward_port);
+                                       forward_host, forward_port); // acceptor 생성자를 이용하여 객체생성
 
-      acceptor.accept_connections();
+      acceptor.accept_connections(); // accept_connections 함수 호출
 
       ios.run();
    }
