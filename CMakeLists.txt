@@ -14,5 +14,5 @@ find_package( Boost REQUIRED )
 include_directories( ${Boost_INCLUDE_DIR} )
 link_directories( ${Boost_LIBRARY_DIRS} )
 
-add_executable( ${PROJECT_NAME} main.cpp ./src/tcpproxy_server.cpp)
+add_executable( ${PROJECT_NAME} ./src/main.cpp)
 target_link_libraries( ${PROJECT_NAME} ${Boost_LIBRARIES} )

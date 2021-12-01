@@ -4,8 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/c/Users/byh/ProxyServer/main.cpp" "/mnt/c/Users/byh/ProxyServer/build/CMakeFiles/ProxyServer.dir/main.cpp.o"
-  "/mnt/c/Users/byh/ProxyServer/src/tcpproxy_server.cpp" "/mnt/c/Users/byh/ProxyServer/build/CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.o"
+  "/mnt/c/Users/byh/ProxyServer/src/main.cpp" "/mnt/c/Users/byh/ProxyServer/build/CMakeFiles/ProxyServer.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -34,11 +34,9 @@ boost/asio.hpp
 boost/thread/mutex.hpp
 -
 
-/mnt/c/Users/byh/ProxyServer/main.cpp
-./inc/bridge.hpp
+/mnt/c/Users/byh/ProxyServer/src/main.cpp
+../inc/bridge.hpp
 /mnt/c/Users/byh/ProxyServer/inc/bridge.hpp
-./inc/acceptor.hpp
+../inc/acceptor.hpp
 /mnt/c/Users/byh/ProxyServer/inc/acceptor.hpp
-
-/mnt/c/Users/byh/ProxyServer/src/tcpproxy_server.cpp
 

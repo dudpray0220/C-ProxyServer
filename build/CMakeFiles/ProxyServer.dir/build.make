@@ -57,45 +57,30 @@ include CMakeFiles/ProxyServer.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/ProxyServer.dir/flags.make
 
-CMakeFiles/ProxyServer.dir/main.cpp.o: CMakeFiles/ProxyServer.dir/flags.make
-CMakeFiles/ProxyServer.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/byh/ProxyServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ProxyServer.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ProxyServer.dir/main.cpp.o -c /mnt/c/Users/byh/ProxyServer/main.cpp
+CMakeFiles/ProxyServer.dir/src/main.cpp.o: CMakeFiles/ProxyServer.dir/flags.make
+CMakeFiles/ProxyServer.dir/src/main.cpp.o: ../src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/byh/ProxyServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ProxyServer.dir/src/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ProxyServer.dir/src/main.cpp.o -c /mnt/c/Users/byh/ProxyServer/src/main.cpp
 
-CMakeFiles/ProxyServer.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ProxyServer.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/byh/ProxyServer/main.cpp > CMakeFiles/ProxyServer.dir/main.cpp.i
+CMakeFiles/ProxyServer.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ProxyServer.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/byh/ProxyServer/src/main.cpp > CMakeFiles/ProxyServer.dir/src/main.cpp.i
 
-CMakeFiles/ProxyServer.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ProxyServer.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/byh/ProxyServer/main.cpp -o CMakeFiles/ProxyServer.dir/main.cpp.s
-
-CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.o: CMakeFiles/ProxyServer.dir/flags.make
-CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.o: ../src/tcpproxy_server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/byh/ProxyServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.o -c /mnt/c/Users/byh/ProxyServer/src/tcpproxy_server.cpp
-
-CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/byh/ProxyServer/src/tcpproxy_server.cpp > CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.i
-
-CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/byh/ProxyServer/src/tcpproxy_server.cpp -o CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.s
+CMakeFiles/ProxyServer.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ProxyServer.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/byh/ProxyServer/src/main.cpp -o CMakeFiles/ProxyServer.dir/src/main.cpp.s
 
 # Object files for target ProxyServer
 ProxyServer_OBJECTS = \
-"CMakeFiles/ProxyServer.dir/main.cpp.o" \
-"CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.o"
+"CMakeFiles/ProxyServer.dir/src/main.cpp.o"
 
 # External object files for target ProxyServer
 ProxyServer_EXTERNAL_OBJECTS =
 
-ProxyServer: CMakeFiles/ProxyServer.dir/main.cpp.o
-ProxyServer: CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.o
+ProxyServer: CMakeFiles/ProxyServer.dir/src/main.cpp.o
 ProxyServer: CMakeFiles/ProxyServer.dir/build.make
 ProxyServer: CMakeFiles/ProxyServer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/byh/ProxyServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ProxyServer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/byh/ProxyServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ProxyServer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ProxyServer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

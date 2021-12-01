@@ -3,7 +3,7 @@
 
 using namespace yhbae;
 
-class acceptor // bridge 클래스 안에 acceptor 클래스 생성!
+class acceptor
 {
 public:
     acceptor(boost::asio::io_service &io_service, // 생성자 (만드려면 인자가 5개 필요하다)
@@ -17,14 +17,14 @@ public:
     {
     }
 
-    // accept_connections 함수
+    // accept_connections 함수, bool은 이 함수의 return type이다.
     bool accept_connections()
     {
         try
         {
             session_ = boost::shared_ptr<bridge>(new bridge(io_service_)); // 동적할당
 
-            acceptor_.async_accept(session_->downstream_socket(), // downstream_socket이란 method 호출
+            acceptor_.async_accept(session_->downstream_socket(), // downstream_socket이란 method 호출, async_accept 내에서 throw를 날림.
                                    boost::bind(&acceptor::handle_accept,
                                                this,
                                                boost::asio::placeholders::error));
@@ -39,7 +39,7 @@ public:
     }
 
 private:
-    // handle_accept 함수
+    // handle_accept 함수, void는 return이 없음.
     void handle_accept(const boost::system::error_code &error)
     {
         if (!error)
@@ -51,7 +51,7 @@ private:
                 std::cerr << "Failure during call to accept." << std::endl;
             }
         }
-        else
+        else // error면
         {
             std::cerr << "Error: " << error.message() << std::endl;
         }

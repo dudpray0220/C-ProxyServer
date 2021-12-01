@@ -1,5 +1,5 @@
-#include "./inc/bridge.hpp"
-#include "./inc/acceptor.hpp"
+#include "../inc/bridge.hpp"
+#include "../inc/acceptor.hpp"
 
 // argc 는 argument의 수를 의미한다. argv 는 argument 가 char 형으로 저장이 되는 변수.
 // argv[0] 은 항상 실행 파일명(실행 경로)이 저장된다. argv[1], argv[2] … 에는 순서대로 사용자가 입력한 argument 가 저장된다.
@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
       return 1;                                                                                                         // return 1 : 정상종료 but 무엇인가 있음.
    }
 
-   const unsigned short local_port = static_cast<unsigned short>(::atoi(argv[2])); // static_cast<바꾸려고 하는 타입>(대상);
+   const unsigned short local_port = static_cast<unsigned short>(::atoi(argv[2])); // static_cast<바꾸려고 하는 타입>(대상); atoi는 문자열을 정수로 바꿔줌.
    const unsigned short forward_port = static_cast<unsigned short>(::atoi(argv[4]));
    const std::string local_host = argv[1];
    const std::string forward_host = argv[3];

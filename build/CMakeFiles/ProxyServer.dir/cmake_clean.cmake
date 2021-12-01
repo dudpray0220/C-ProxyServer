@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/ProxyServer.dir/main.cpp.o"
-  "CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.o"
+  "CMakeFiles/ProxyServer.dir/src/main.cpp.o"
   "ProxyServer"
   "ProxyServer.pdb"
 )

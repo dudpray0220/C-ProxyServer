@@ -123,59 +123,32 @@ ProxyServer/fast:
 	$(MAKE) -f CMakeFiles/ProxyServer.dir/build.make CMakeFiles/ProxyServer.dir/build
 .PHONY : ProxyServer/fast
 
-main.o: main.cpp.o
+src/main.o: src/main.cpp.o
 
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/ProxyServer.dir/build.make CMakeFiles/ProxyServer.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/ProxyServer.dir/build.make CMakeFiles/ProxyServer.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/ProxyServer.dir/build.make CMakeFiles/ProxyServer.dir/main.cpp.s
-.PHONY : main.cpp.s
-
-src/tcpproxy_server.o: src/tcpproxy_server.cpp.o
-
-.PHONY : src/tcpproxy_server.o
+.PHONY : src/main.o
 
 # target to build an object file
-src/tcpproxy_server.cpp.o:
-	$(MAKE) -f CMakeFiles/ProxyServer.dir/build.make CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.o
-.PHONY : src/tcpproxy_server.cpp.o
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/ProxyServer.dir/build.make CMakeFiles/ProxyServer.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-src/tcpproxy_server.i: src/tcpproxy_server.cpp.i
+src/main.i: src/main.cpp.i
 
-.PHONY : src/tcpproxy_server.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-src/tcpproxy_server.cpp.i:
-	$(MAKE) -f CMakeFiles/ProxyServer.dir/build.make CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.i
-.PHONY : src/tcpproxy_server.cpp.i
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/ProxyServer.dir/build.make CMakeFiles/ProxyServer.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-src/tcpproxy_server.s: src/tcpproxy_server.cpp.s
+src/main.s: src/main.cpp.s
 
-.PHONY : src/tcpproxy_server.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-src/tcpproxy_server.cpp.s:
-	$(MAKE) -f CMakeFiles/ProxyServer.dir/build.make CMakeFiles/ProxyServer.dir/src/tcpproxy_server.cpp.s
-.PHONY : src/tcpproxy_server.cpp.s
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/ProxyServer.dir/build.make CMakeFiles/ProxyServer.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -186,12 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... ProxyServer"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... src/tcpproxy_server.o"
-	@echo "... src/tcpproxy_server.i"
-	@echo "... src/tcpproxy_server.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 
