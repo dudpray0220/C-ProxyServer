@@ -1,3 +1,0 @@
-/mnt/c/Users/byh/ProxyServer/build/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/byh/ProxyServer/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/byh/ProxyServer/build/CMakeFiles/ProxyServer.dir
