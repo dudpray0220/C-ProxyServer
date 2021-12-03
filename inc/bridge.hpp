@@ -2,7 +2,7 @@
 #include "common.hpp"
 
 namespace yhbae
-{
+{ // 헤더파일이므로 선언만 한다.
    namespace ip = boost::asio::ip;
 
    class bridge : public boost::enable_shared_from_this<bridge> // 상속. 상속을 받는 방법은  class 파생클래스이름 : 접근제어지시자 부모클래스이름
@@ -12,10 +12,7 @@ namespace yhbae
       typedef ip::tcp::socket socket_type;        // typedef는 타입의 별칭 생성. ip::tcp::socket의 별칭이 socket_type
       typedef boost::shared_ptr<bridge> ptr_type; // ptr_type은 타입의 별칭. shared_ptr은 스마트 포인터
 
-      bridge(boost::asio::io_service &ios)                 // 생성자
-          : downstream_socket_(ios), upstream_socket_(ios) // 멤버변수 down, upstream_socket에 파라미터를 연결해줌.
-      {
-      }
+      bridge(boost::asio::io_service &ios); // 생성자
 
       socket_type &downstream_socket() // &를 붙이면 주소가 된다. 멤버함수(Method), socket_type은 return값의 타입이다.
       {
