@@ -14,15 +14,15 @@ int main(int argc, char *argv[])
    // }
 
    // JsonInput Class 호출
-   JsonInput j1;
-   j1.start(); // json파일 읽어와서 멤버변수 4개에 값을 알맞게 담는다.
+   jsonInput jInput;
+   jInput.start(); // json파일 읽어와서 멤버변수 4개에 값을 알맞게 담는다.
 
    // 한 이쯤 rapidjson으로 불러와야함. unsigned short는 ~65,535. 즉, 포트범위.
-   const std::string local_host = j1.GetLocalhost();
-   const std::string forward_host = j1.GetForwardhost();
+   const std::string local_host = jInput.GetLocalhost();
+   const std::string forward_host = jInput.GetForwardhost();
 
-   const unsigned short local_port = static_cast<unsigned short>(::atoi(j1.GetLocalport()));     // static_cast<바꾸려고 하는 타입>(대상);
-   const unsigned short forward_port = static_cast<unsigned short>(::atoi(j1.GetForwardport())); // atoi는 문자열을 정수로 바꿔줌.
+   const unsigned short local_port = static_cast<unsigned short>(::atoi(jInput.GetLocalport()));     // static_cast<바꾸려고 하는 타입>(대상);
+   const unsigned short forward_port = static_cast<unsigned short>(::atoi(jInput.GetForwardport())); // atoi는 문자열을 정수로 바꿔줌.
 
    // 테스트 출력
    std::cout << local_host << std::endl;
