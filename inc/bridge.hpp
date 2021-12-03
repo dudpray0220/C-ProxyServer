@@ -164,7 +164,7 @@ namespace yhbae
       enum
       {
          max_data_length = 8192
-      };                                               //8KB
+      };                                               // 8KB
       unsigned char downstream_data_[max_data_length]; // 멤버변수
       unsigned char upstream_data_[max_data_length];
 
