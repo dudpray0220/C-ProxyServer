@@ -1,10 +1,9 @@
 #include "../inc/jsonInput.hpp"
 
-int jsonInput::start() // start 메소드
+int jsonInput::start()  // start 메소드
 {
     std::ifstream ifs{R"(../info.json)"};
-    if (!ifs.is_open())
-    {
+    if (!ifs.is_open()) {
         std::cerr << "Could not open file for reading!\n";
         return EXIT_FAILURE;
     }
@@ -18,16 +17,15 @@ int jsonInput::start() // start 메소드
     Writer<StringBuffer> writer{buffer};
     doc.Accept(writer);
 
-    if (doc.HasParseError())
-    {
+    if (doc.HasParseError()) {
         std::cout << "Error  : " << doc.GetParseError() << '\n'
                   << "Offset : " << doc.GetErrorOffset() << '\n';
         return EXIT_FAILURE;
     }
 
-    const std::string jsonStr{buffer.GetString()}; // jsonStr에 json 값이 담겼다.
+    const std::string jsonStr{buffer.GetString()};  // jsonStr에 json 값이 담겼다.
 
-    local_host = doc["local_host"].GetString(); // 각각 맞는 값을 멤버변수에 담아줌.
+    local_host = doc["local_host"].GetString();  // 각각 맞는 값을 멤버변수에 담아줌.
     local_port = doc["local_port"].GetString();
     forward_host = doc["forward_host"].GetString();
     forward_port = doc["forward_port"].GetString();
@@ -53,19 +51,15 @@ int jsonInput::start() // start 메소드
     return 0;
 };
 
-std::string jsonInput::GetLocalhost()
-{
+std::string jsonInput::GetLocalhost() {
     return local_host;
 };
-const char *jsonInput::GetLocalport()
-{
+const char *jsonInput::GetLocalport() {
     return local_port;
 };
-std::string jsonInput::GetForwardhost()
-{
+std::string jsonInput::GetForwardhost() {
     return forward_host;
 };
-const char *jsonInput::GetForwardport()
-{
+const char *jsonInput::GetForwardport() {
     return forward_port;
 };
