@@ -1,5 +1,6 @@
 #include "../inc/acceptor.hpp"
 
+namespace yhbae {
 // public
 acceptor::acceptor(boost::asio::io_service &io_service,  // 생성자 (만드려면 인자가 5개 필요하다)
                    const std::string &local_host, unsigned short local_port,
@@ -26,10 +27,6 @@ bool acceptor::accept_connections() {
     return true;
 };
 
-ip::address_v4 acceptor::abc() {
-    return localhost_address;
-}
-
 // private
 void acceptor::handle_accept(const boost::system::error_code &error) {
     if (!error) {
@@ -39,8 +36,9 @@ void acceptor::handle_accept(const boost::system::error_code &error) {
         {
             std::cerr << "Failure during call to accept." << std::endl;
         }
-    } else  // error면
-    {
+    } else {
         std::cerr << "Error: " << error.message() << std::endl;
     }
 };
+
+}

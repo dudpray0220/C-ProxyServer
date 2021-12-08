@@ -24,17 +24,17 @@ int main(int argc, char *argv[]) {
     const unsigned short forward_port = static_cast<unsigned short>(::atoi(jInput.GetForwardport()));  // atoi는 문자열을 정수로 바꿔줌.
 
     // 테스트 출력
-    std::cout << local_host << std::endl;
-    std::cout << forward_host << std::endl;
-    std::cout << local_port << std::endl;
-    std::cout << forward_port << std::endl;
+    // std::cout << local_host << std::endl;
+    // std::cout << forward_host << std::endl;
+    // std::cout << local_port << std::endl;
+    // std::cout << forward_port << std::endl;
 
     boost::asio::io_service ios;
 
     try {
-        acceptor acceptor(ios,
-                          local_host, local_port,
-                          forward_host, forward_port);  // acceptor 생성자를 이용하여 객체생성
+        yhbae::acceptor acceptor(ios,
+                                 local_host, local_port,
+                                 forward_host, forward_port);  // acceptor 생성자를 이용하여 객체생성
 
         acceptor.accept_connections();  // accept_connections 함수 호출
 
