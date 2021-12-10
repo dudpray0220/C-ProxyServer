@@ -1,29 +1,30 @@
 #include "../inc/jsonInput.hpp"
 
+// Using rapidjson library
 int jsonInput::start()  // start 메소드
 {
-    std::ifstream ifs{R"(../info.json)"};
-    if (!ifs.is_open()) {
+    std::ifstream ifs{R"(../info.json)"};  // ifs에 json파일을 읽어들인다.
+    if (!ifs.is_open()) {                  // 못 읽어들일시 error 출력 (cerr : error에 대한 표준 출력 스트림)
         std::cerr << "Could not open file for reading!\n";
         return EXIT_FAILURE;
     }
 
     IStreamWrapper isw{ifs};
 
-    Document doc{};
-    doc.ParseStream(isw);
+    Document doc{};        // Document는 GenericDocument<UTF8<> > 의 typedef.
+    doc.ParseStream(isw);  // 읽은 json 파일을 parsing 해줌.
 
-    StringBuffer buffer{};
+    StringBuffer buffer{};  // StringBuffer는 GenericStringBuffer<UTF8<> >의 typedef. json을 쓰기위한 메모리버퍼 할당. GetString()버퍼를 얻는데 사용.
     Writer<StringBuffer> writer{buffer};
     doc.Accept(writer);
 
-    if (doc.HasParseError()) {
+    if (doc.HasParseError()) {  // Parse에서 error 발생 시 error 출력
         std::cout << "Error  : " << doc.GetParseError() << '\n'
                   << "Offset : " << doc.GetErrorOffset() << '\n';
         return EXIT_FAILURE;
     }
 
-    const std::string jsonStr{buffer.GetString()};  // jsonStr에 json 값이 담겼다.
+    const std::string jsonStr{buffer.GetString()};  // jsonStr에 json 값을 넣는다.
 
     local_host = doc["local_host"].GetString();  // 각각 맞는 값을 멤버변수에 담아줌.
     local_port = doc["local_port"].GetString();
@@ -51,6 +52,7 @@ int jsonInput::start()  // start 메소드
     return 0;
 };
 
+// json에서 원하는 값을 return 시키는 method
 std::string jsonInput::GetLocalhost() {
     return local_host;
 };

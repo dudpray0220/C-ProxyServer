@@ -11,12 +11,15 @@ acceptor::acceptor(boost::asio::io_service &io_service,  // 생성자 (만드려
       upstream_port_(upstream_port),
       upstream_host_(upstream_host){};
 
+// accept_connections Method
 bool acceptor::accept_connections() {
     try {
-        session_ = boost::shared_ptr<bridge>(new bridge(io_service_));  // 동적할당
+        session_ = boost::shared_ptr<bridge>(new bridge(io_service_));  // session_의 뜻 : io_service를 얼마나 참조하고 있느냐
+        // 동적할당. shared_ptr는 특정 자원을 가리키는 참조 카운트를 유지하고 있다가 이것이 0이 되면 해당 자원을 자동으로 delete해주는 스마트 포인터
 
-        acceptor_.async_accept(session_->downstream_socket(),  // downstream_socket이란 method 호출, async_accept 내에서 throw를 날림.
-                               boost::bind(&acceptor::handle_accept,
+        acceptor_.async_accept(session_->downstream_socket(),         // downstream_socket이란 method 호출 -> client socket을 return,
+                                                                      //  try catch문에선 async_accept 내에서 throw를 날림.
+                               boost::bind(&acceptor::handle_accept,  // acceptor class에 속한 handle_accept 함수를 파라미터로 넣음.
                                            this,
                                            boost::asio::placeholders::error));
     } catch (std::exception &e) {
@@ -28,9 +31,10 @@ bool acceptor::accept_connections() {
 };
 
 // private
+// handle_accept Method
 void acceptor::handle_accept(const boost::system::error_code &error) {
     if (!error) {
-        session_->start(upstream_host_, upstream_port_);  // start 함수 호출
+        session_->start(upstream_host_, upstream_port_);  // error아니면 start 함수 호출 (Attempt connection to remote server (upstream side))
 
         if (!accept_connections())  // accept_connections이 false면
         {
@@ -41,4 +45,4 @@ void acceptor::handle_accept(const boost::system::error_code &error) {
     }
 };
 
-}
+}  // namespace yhbae

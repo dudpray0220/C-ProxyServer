@@ -5,7 +5,7 @@ namespace yhbae {  // 헤더파일이므로 선언만 한다.
 namespace ip = boost::asio::ip;
 
 class bridge : public boost::enable_shared_from_this<bridge>  // 상속. 상속을 받는 방법은  class 파생클래스이름 : 접근제어지시자 부모클래스이름
-                                                              // 즉, 여기선 class bridge에서 public boost::enable_shared_from_this<bridge>의 것들을 쓸 수 있다.
+                                                              // 즉, class bridge에서 public boost::enable_shared_from_this<bridge>의 것들을 쓸 수 있다.
 {
    public:
     // typedef는 멤버변수 선언이 아니다.
