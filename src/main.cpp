@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     // std::cout << local_port << std::endl;
     // std::cout << forward_port << std::endl;
 
-    boost::asio::io_service ios;  // 변수 선언
+    boost::asio::io_service ios;  // 변수선언, io_service는 OS의 리소스에 접근하고 i/o 요청을 수행하는 프로그램을 OS와 상호작용할 수 있도록 중개하는 역할.
 
     try {
         yhbae::acceptor acceptor(ios,
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 
         acceptor.accept_connections();  // accept_connections 함수 호출
 
-        ios.run();
+        ios.run();  // 여기 thorw 존재?
     } catch (std::exception &e)
 
     {

@@ -16,9 +16,9 @@ bool acceptor::accept_connections() {
     try {
         session_ = boost::shared_ptr<bridge>(new bridge(io_service_));  // session_의 뜻 : io_service를 얼마나 참조하고 있느냐
         // 동적할당. shared_ptr는 특정 자원을 가리키는 참조 카운트를 유지하고 있다가 이것이 0이 되면 해당 자원을 자동으로 delete해주는 스마트 포인터
-
+        // async_accept는 비등기 승인을 시작한다.
         acceptor_.async_accept(session_->downstream_socket(),         // downstream_socket이란 method 호출 -> client socket을 return,
-                                                                      //  try catch문에선 async_accept 내에서 throw를 날림.
+                                                                      //  try catch문에선 async_accept 내에서 throw를 날림. throw에 걸리면 catch, 아니면 try문 수행
                                boost::bind(&acceptor::handle_accept,  // acceptor class에 속한 handle_accept 함수를 파라미터로 넣음.
                                            this,
                                            boost::asio::placeholders::error));

@@ -17,7 +17,8 @@ class acceptor  // 헤더파일이므로 선언만 한다.
     // handle_accept 함수, void는 return이 없음.
     void handle_accept(const boost::system::error_code &error);
 
-    boost::asio::io_service &io_service_;  // 멤버변수 선언 (in Private)
+    // 멤버변수 선언 (in Private)
+    boost::asio::io_service &io_service_;  // io_service는 OS의 리소스에 접근하고 i/o 요청을 수행하는 프로그램을 OS와 상호작용할 수 있도록 중개하는 역할.
     ip::address_v4 localhost_address;
     ip::tcp::acceptor acceptor_;
     yhbae::bridge::ptr_type session_;
