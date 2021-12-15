@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-12-15T02:31:18.205Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="j86WlnCXsF3GNhoxfXgI" version="15.9.6" type="github">
+<mxfile host="app.diagrams.net" modified="2021-12-15T08:46:46.611Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="zYPw9eHMJKQNpG-HACQf" version="15.9.6" type="github">
   <diagram id="whLxphDbOcCeGoWNnIWj" name="페이지-1">
-    <mxGraphModel dx="1662" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="1662" dy="705" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -295,8 +295,8 @@
         <mxCell id="h061LGX5uVM3FiNdkVwj-94" value="UpStream : Client -&amp;gt; Proxy -&amp;gt; Remote Server" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;fontSize=15;fontStyle=1;fontFamily=Times New Roman;" parent="1" vertex="1">
           <mxGeometry x="840" y="760" width="340" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="6vEWO9o-Fa4ZRpAQN4_v-1" value="mCount" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="915" y="214" width="60" height="60" as="geometry" />
+        <mxCell id="6vEWO9o-Fa4ZRpAQN4_v-1" value="mAttempt" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="700" y="381" width="60" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
