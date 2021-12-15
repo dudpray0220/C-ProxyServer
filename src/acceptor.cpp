@@ -13,11 +13,10 @@ acceptor::acceptor(boost::asio::io_service &io_service,  // 생성자 (만드려
       mCount(0){};  // 생성자 만든 후 항상 멤버변수 지정을 해줘야한다!
 
 // accept_connections Method
-
 bool acceptor::accept_connections() {
     try {
-        mCount++;                                         // 1 2 3
-        std::cout << "mCount : " << mCount << std::endl;  // mCount 출력
+        std::cout << "mCount : " << mCount << std::endl;  // mCount 출력 0 1 2
+        mCount++;
         if (mCount < 10) {
             session_ = boost::shared_ptr<bridge>(new bridge(io_service_));  // session_의 뜻 : io_service를 얼마나 참조하고 있느냐
             // 동적할당. shared_ptr는 특정 자원을 가리키는 참조 카운트를 유지하고 있다가 이것이 0이 되면 해당 자원을 자동으로 delete해주는 스마트 포인터
