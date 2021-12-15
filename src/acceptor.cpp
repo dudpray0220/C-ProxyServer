@@ -15,7 +15,7 @@ acceptor::acceptor(boost::asio::io_service &io_service,  // 생성자 (만드려
 // accept_connections Method
 bool acceptor::accept_connections() {
     try {
-        std::cout << "mAttempt : " << mAttempt << std::endl;  // mAttempt : 1 2 3 ~
+        std::cout << "mAttempt : " << mAttempt << std::endl;  // mAttempt : 0 1 2 3 ~
         mAttempt++;                                           // 처음 실행시 0에서 ++하여 mAttempt=1,
 
         if (mAttempt < 10) {                                                // 10번째 시도부터 안되게 함.
@@ -28,7 +28,7 @@ bool acceptor::accept_connections() {
                                                this,
                                                boost::asio::placeholders::error));
         } else {
-            std::cerr << "Limit number of client connections" << std::endl;  //
+            std::cerr << "Limit number of client connections" << std::endl;  // mAttempt : 9 다음 error 출력. 접속 막음.
         }
 
     } catch (std::exception &e) {
