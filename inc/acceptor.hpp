@@ -24,7 +24,7 @@ class acceptor  // 헤더파일이므로 선언만 한다.
     yhbae::bridge::ptr_type session_;
     unsigned short upstream_port_;
     std::string upstream_host_;
-    int32_t mCount;  // 클라이언트 연결 수 제한을 위한 멤버변수
+    int32_t mAttempt;  // 클라이언트 연결 수 제한을 위한 멤버변수 (시도횟수)
 };
 
 }  // namespace yhbae

@@ -10,14 +10,15 @@ acceptor::acceptor(boost::asio::io_service &io_service,  // 생성자 (만드려
       acceptor_(io_service_, ip::tcp::endpoint(localhost_address, local_port)),
       upstream_port_(upstream_port),
       upstream_host_(upstream_host),
-      mCount(0){};  // 생성자 만든 후 항상 멤버변수 지정을 해줘야한다!
+      mAttempt(0){};  // 생성자 만든 후 항상 멤버변수 지정을 해줘야한다!
 
 // accept_connections Method
 bool acceptor::accept_connections() {
     try {
-        std::cout << "mCount : " << mCount << std::endl;  // mCount 출력 0 1 2
-        mCount++;
-        if (mCount < 10) {
+        std::cout << "mAttempt : " << mAttempt << std::endl;  // mAttempt : 1 2 3 ~
+        mAttempt++;                                           // 처음 실행시 0에서 ++하여 mAttempt=1,
+
+        if (mAttempt < 10) {                                                // 10번째 시도부터 안되게 함.
             session_ = boost::shared_ptr<bridge>(new bridge(io_service_));  // session_의 뜻 : io_service를 얼마나 참조하고 있느냐
             // 동적할당. shared_ptr는 특정 자원을 가리키는 참조 카운트를 유지하고 있다가 이것이 0이 되면 해당 자원을 자동으로 delete해주는 스마트 포인터
             // async_accept는 비등기 승인을 시작한다.
@@ -27,8 +28,9 @@ bool acceptor::accept_connections() {
                                                this,
                                                boost::asio::placeholders::error));
         } else {
-            std::cerr << "Limit number of client connections" << std::endl;
+            std::cerr << "Limit number of client connections" << std::endl;  //
         }
+
     } catch (std::exception &e) {
         std::cerr << "acceptor exception: " << e.what() << std::endl;
         return false;
@@ -39,13 +41,13 @@ bool acceptor::accept_connections() {
 // private
 // handle_accept Method
 void acceptor::handle_accept(const boost::system::error_code &error) {
-    if (!error) {
-        session_->start(upstream_host_, upstream_port_);  // error아니면 start 함수 호출 (Attempt connection to remote server (upstream side))
-        if (!accept_connections())                        // accept_connections이 false면
+    if (!error) {                                         // 에러가 아닐시
+        session_->start(upstream_host_, upstream_port_);  // start 함수 호출 (Attempt connection to remote server (upstream side))
+        if (!accept_connections())                        // accept_connections이 false면 error 출력
         {
             std::cerr << "Failure during call to accept." << std::endl;
         }
-    } else {
+    } else {  // 에러일시
         std::cerr << "Error: " << error.message() << std::endl;
     }
 };
